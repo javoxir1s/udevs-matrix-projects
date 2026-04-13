@@ -173,6 +173,21 @@ SuperAdmin only.
 
 ---
 
+## Reports
+
+SuperAdmin access. All reports filterable by date range and exportable (CSV).
+
+- **Deals Report** — total deals by period, by type (sale / rental), total deal value, average deal amount, deals by district
+- **Revenue Report** — total commission earned, commission from sales vs rentals, revenue per agent
+- **Properties Report** — total active listings, new listings over time, listings by type / district / deal type, average days on market
+- **Agents Report** — deals closed per agent, revenue generated per agent, average rating, active listings per agent
+- **Viewings Report** — total viewings booked, conversion rate (viewing → deal), cancellation rate, no-show rate
+- **Rental Report** — active rentals, expiring rentals (next 30 days), overdue payments, average rental price by district
+- **Customers Report** — new client registrations over time, buyers vs tenants, top clients by deal count
+- **Reviews Report** — average agent rating, recent low-rated reviews, agents with no reviews
+
+---
+
 ## ERD (Database Diagram)
 
 Before development starts — ERD diagram. All tables, relationships, data types. dbdiagram.io, drawSQL, or Mermaid. Include in documentation.
@@ -192,6 +207,7 @@ Before development starts — ERD diagram. All tables, relationships, data types
 - **Rental management** — agreements, payment schedule, statuses
 - **Profile** — personal info, reviews, settings
 - **Profit / Loss page** (SuperAdmin only) — revenue, expenses, summary
+- **Reports page** (SuperAdmin) — deals, revenue, agents, viewings, rental reports with export
 
 ---
 
@@ -210,6 +226,7 @@ Before development starts — ERD diagram. All tables, relationships, data types
 | Payment emulation                                    |
 | Reviews & ratings                                    |
 | Profit / loss                                        |
+| Basic reports (deals, agents, viewings, rentals)     |
 | Frontend — all pages functional                      |
 
 ---
@@ -219,4 +236,4 @@ Before development starts — ERD diagram. All tables, relationships, data types
 - **Backend:** Go, `Ucode`
 - **Frontend:** React or Next.js (your choice), deployed on **Vercel**
 - **Database:** ERD required (dbdiagram.io / drawSQL / Mermaid)
-- **Bonus:** Project Documentation, Profit / Loss, Cashflow
+- **Bonus:** Project Documentation, Profit / Loss, Cashflow, Balance (like planfakt.io) on MetaBase

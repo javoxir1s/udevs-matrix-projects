@@ -138,6 +138,21 @@ This section is SuperAdmin only. I need to understand — am I making money or l
 
 ---
 
+## Reports
+
+SuperAdmin / Content Manager access. All reports filterable by date range and exportable (CSV).
+
+- **Sales Report** — total orders, total revenue, average order value, orders by status; breakdown by day/week/month
+- **Products Report** — top selling products (by quantity and revenue), worst performing products, products with low stock (< threshold)
+- **Variations Report** — which SKUs sell most, which variations are never ordered (dead stock)
+- **Customers Report** — new vs returning customers, top customers by spend, registration growth over time
+- **Orders Report** — orders by status (new / paid / shipped / delivered / cancelled), average delivery time, cancellation rate
+- **Stock Report** — current stock levels per variation, stock movements (deducted per order), restocking history
+- **Revenue by Category** — which categories bring the most revenue
+- **Reviews Report** — average rating per product, products with no reviews, recent negative reviews
+
+---
+
 ## ERD (Database Diagram)
 
 Before development starts, I need an ERD diagram of the entire database. All tables, relationships, data types. Use dbdiagram.io, drawSQL, or Mermaid. Include in project documentation.
@@ -155,6 +170,7 @@ Before development starts, I need an ERD diagram of the entire database. All tab
 - **Profile** — personal info, order history, my reviews
 - **Admin panel** — manage products, variations, categories, orders, stock
 - **Profit / Loss page** (SuperAdmin only) — summary, charts, filters
+- **Reports page** (SuperAdmin) — sales, products, customers, stock, reviews reports with export
 
 ---
 
@@ -173,6 +189,7 @@ Before development starts, I need an ERD diagram of the entire database. All tab
 | Order statuses + transition history                 |
 | Reviews & ratings                                   |
 | Profit / loss                                       |
+| Basic reports (sales, stock, customers, reviews)    |
 | Frontend — all pages functional                     |
 
 ---
@@ -182,4 +199,4 @@ Before development starts, I need an ERD diagram of the entire database. All tab
 - **Backend:** Go, `Ucode`
 - **Frontend:** React or Next.js (your choice), deployed on **Vercel**
 - **Database:** ERD required (dbdiagram.io / drawSQL / Mermaid)
-- **Bonus:** Project Documentation, Profit / Loss, Cashflow
+- **Bonus:** Project Documentation, Profit / Loss, Cashflow, Balance (like planfakt.io) on MetaBase 

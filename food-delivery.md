@@ -183,6 +183,21 @@ SuperAdmin only.
 
 ---
 
+## Reports
+
+SuperAdmin access. All reports filterable by date range and exportable (CSV).
+
+- **Orders Report** — total orders by period, by status, average order value, cancellation rate, peak order hours
+- **Revenue Report** — total revenue by period, commission breakdown (platform commission vs delivery fees), revenue per restaurant
+- **Restaurants Report** — top restaurants by order volume and revenue, average rating per restaurant, inactive restaurants
+- **Couriers Report** — deliveries per courier, average delivery time, courier rating, earnings per courier, active vs offline couriers
+- **Customers Report** — new vs returning customers, top customers by order count and spend, customer growth over time
+- **Menu Report** — top selling dishes (by quantity and revenue), dishes never ordered, most popular dish categories
+- **Delivery Report** — average delivery time by area/courier, on-time delivery rate, late delivery breakdown
+- **Reviews Report** — average restaurant rating, average courier rating, recent low-rated reviews
+
+---
+
 ## ERD (Database Diagram)
 
 Before development starts — ERD diagram. All tables, relationships, data types. dbdiagram.io, drawSQL, or Mermaid. Include in documentation.
@@ -201,6 +216,7 @@ Before development starts — ERD diagram. All tables, relationships, data types
 - **Restaurant Owner dashboard** — manage menu, dishes, variations, incoming orders
 - **Courier dashboard** — available orders, accept/decline, update delivery status
 - **Profit / Loss page** (SuperAdmin only) — revenue and expense summary
+- **Reports page** (SuperAdmin) — orders, revenue, restaurants, couriers, delivery reports with export
 
 ---
 
@@ -220,6 +236,7 @@ Before development starts — ERD diagram. All tables, relationships, data types
 | Payment emulation                                    |
 | Reviews & ratings (restaurant + courier separately)  |
 | Profit / loss                                        |
+| Basic reports (orders, revenue, couriers, delivery)  |
 | Frontend — all pages functional                      |
 
 ---
@@ -229,4 +246,4 @@ Before development starts — ERD diagram. All tables, relationships, data types
 - **Backend:** Go, `Ucode`
 - **Frontend:** React or Next.js (your choice), deployed on **Vercel**
 - **Database:** ERD required (dbdiagram.io / drawSQL / Mermaid)
-- **Bonus:** Project Documentation, Profit / Loss, Cashflow
+- **Bonus:** Project Documentation, Profit / Loss, Cashflow, Balance (like planfakt.io) on MetaBase

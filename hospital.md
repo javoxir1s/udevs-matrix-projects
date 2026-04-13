@@ -177,6 +177,21 @@ SuperAdmin only.
 
 ---
 
+## Reports
+
+SuperAdmin access. All reports filterable by date range and exportable (CSV).
+
+- **Appointments Report** — total appointments by period, by status (completed / cancelled / no-show), by specialization, cancellation rate
+- **Revenue Report** — total invoiced vs total paid, revenue by service type (consultation / lab / procedure), revenue per doctor
+- **Doctors Report** — appointments per doctor, average consultation duration, revenue generated per doctor, rating per doctor
+- **Patients Report** — new patient registrations over time, returning vs new patients, patients by age group / gender / blood type
+- **Billing Report** — unpaid invoices (overdue), refund rate, average invoice value, total collected vs outstanding
+- **Prescriptions Report** — most prescribed medications, prescriptions issued per period, prescriptions per doctor
+- **Occupancy Report** — slot utilization rate per doctor (booked slots / total available slots), peak hours, busiest days
+- **Reviews Report** — average rating per doctor, recent low-rated reviews, doctors with no reviews
+
+---
+
 ## ERD (Database Diagram)
 
 Before development starts — ERD diagram. All tables, relationships, data types. dbdiagram.io, drawSQL, or Mermaid. Include in documentation.
@@ -196,6 +211,7 @@ Before development starts — ERD diagram. All tables, relationships, data types
 - **Invoice page** — payment status, details
 - **Profile** — personal info, settings
 - **Profit / Loss page** (SuperAdmin only) — revenue, expenses, summary
+- **Reports page** (SuperAdmin) — appointments, revenue, doctors, billing, occupancy reports with export
 
 ---
 
@@ -213,6 +229,7 @@ Before development starts — ERD diagram. All tables, relationships, data types
 | Billing + payment emulation                          |
 | Reviews & ratings                                    |
 | Profit / loss                                        |
+| Basic reports (appointments, revenue, billing, occ.) |
 | Frontend — all pages functional                      |
 
 ---
@@ -222,4 +239,4 @@ Before development starts — ERD diagram. All tables, relationships, data types
 - **Backend:** Go, `Ucode`
 - **Frontend:** React or Next.js (your choice), deployed on **Vercel**
 - **Database:** ERD required (dbdiagram.io / drawSQL / Mermaid)
-- **Bonus:** Project Documentation, Profit / Loss, Cashflow
+- **Bonus:** Project Documentation, Profit / Loss, Cashflow, Balance (like planfakt.io) on MetaBase

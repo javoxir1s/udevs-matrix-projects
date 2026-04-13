@@ -143,6 +143,21 @@ SuperAdmin only. I need to understand the platform's financial health.
 
 ---
 
+## Reports
+
+SuperAdmin / Instructor access. All reports filterable by date range and exportable (CSV).
+
+- **Enrollments Report** — total enrollments over time, enrollments per course, new vs returning students, dropout rate by course
+- **Revenue Report** — total revenue by period, revenue per course, free vs paid course breakdown, average enrollment value
+- **Students Report** — total registered students, active vs inactive, top students by courses completed, student growth over time
+- **Progress Report** — average lesson completion rate per course, students stuck (no activity > 7 days), completion funnel
+- **Quiz Report** — average score per quiz, pass/fail rate, most failed questions, average number of attempts
+- **Certificates Report** — certificates issued per period, per course, total issued count
+- **Instructors Report** — courses per instructor, students per instructor, revenue per instructor, average rating
+- **Reviews Report** — average rating per course, courses with no reviews, recent low-rated reviews
+
+---
+
 ## ERD (Database Diagram)
 
 Before development starts — ERD diagram of the entire database. All tables, relationships, data types. Use dbdiagram.io, drawSQL, or Mermaid. Include in documentation.
@@ -161,6 +176,7 @@ Before development starts — ERD diagram of the entire database. All tables, re
 - **Certificate page** — view and public verification
 - **Profile** — personal info, reviews, settings
 - **Profit / Loss page** (SuperAdmin only) — revenue and expense summary
+- **Reports page** (SuperAdmin) — enrollments, revenue, students, quizzes, certificates reports with export
 
 ---
 
@@ -178,6 +194,7 @@ Before development starts — ERD diagram of the entire database. All tables, re
 | Certificates (auto-generation + public verification) |
 | Reviews & ratings                                    |
 | Profit / loss                                        |
+| Basic reports (enrollments, revenue, quizzes, certs) |
 | Frontend — all pages functional                      |
 
 ---
@@ -187,4 +204,4 @@ Before development starts — ERD diagram of the entire database. All tables, re
 - **Backend:** Go, `Ucode`
 - **Frontend:** React or Next.js (your choice), deployed on **Vercel**
 - **Database:** ERD required (dbdiagram.io / drawSQL / Mermaid)
-- **Bonus:** Project Documentation, Profit / Loss, Cashflow
+- **Bonus:** Project Documentation, Profit / Loss, Cashflow, Balance (like planfakt.io) on MetaBase
