@@ -187,4 +187,4 @@ Before development starts — ERD diagram of the entire database. All tables, re
 - **Backend:** Go, `Ucode`
 - **Frontend:** React or Next.js (your choice), deployed on **Vercel**
 - **Database:** ERD required (dbdiagram.io / drawSQL / Mermaid)
-- **Bonus:** Project Documentation
+- **Bonus:** Project Documentation, Profit / Loss, Cashflow

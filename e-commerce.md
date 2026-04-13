@@ -182,4 +182,4 @@ Before development starts, I need an ERD diagram of the entire database. All tab
 - **Backend:** Go, `Ucode`
 - **Frontend:** React or Next.js (your choice), deployed on **Vercel**
 - **Database:** ERD required (dbdiagram.io / drawSQL / Mermaid)
-- **Bonus:** Project Documentation / Profit Loss
+- **Bonus:** Project Documentation, Profit / Loss, Cashflow
