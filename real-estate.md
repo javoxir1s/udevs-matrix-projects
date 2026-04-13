@@ -1,112 +1,222 @@
-# Real Estate — Exam Project
+# Real Estate — Technical Requirements
 
 ---
 
-## Description
-
-Develop a full-featured backend and frontend for a real estate platform with property listings, search, viewing appointments, deal management, and rental management.
+## From: Client
+## To: Development Team
 
 ---
 
-## Backend (Go)
+## What I Want
 
-### Authentication & Authorization
-- JWT-based authentication (access token + refresh token)
-- Role-based access control (RBAC)
-- Roles:
-    - SuperAdmin
-    - Agent
-    - Owner
-    - Client (buyer / tenant)
+I need a real estate platform. Owners and agents list properties for sale or rent. Clients search, add to favorites, book viewings, and close deals. Rentals are managed with monthly payments. As the platform owner, I see the finances and control the process.
 
-### Properties
-- Create / edit / delete listing (Agent, Owner)
-- Property type: apartment, house, commercial, land
+Not a bare-bones classifieds board — a full platform with viewings, deals, rental management, and analytics.
+
+---
+
+## Roles & Access
+
+**SuperAdmin** — that's me, the platform owner. Full access: all properties, users, deals, finances. Role management.
+
+**Agent** — lists properties, manages their listings, accepts/declines viewing requests, handles deals. Sees their own clients and stats.
+
+**Owner** — lists their own properties, manages listings, confirms viewings. Can operate without an agent.
+
+**Client** — buyer or tenant. Searches properties, adds to favorites, books viewings, closes deals, makes payments.
+
+Authentication — JWT tokens (access + refresh). Passwords — bcrypt.
+
+---
+
+## Properties
+
+An agent or owner creates a listing. Property data:
+- Title (listing headline)
+- Description (rich text)
+- Property type: apartment / house / commercial / land
 - Deal type: sale / rent
-- Property data: title, description, address, area (m²), number of rooms, floor, price, photos (multiple)
-- Listing status: `active` → `reserved` → `sold` / `rented` → `archived`
-- Property listing with filtering by: type, price, area, number of rooms, district, deal type
-- Sorting by price, publication date, area
-- Property detail page
+- Address, district / neighborhood
+- Area (m²)
+- Number of rooms
+- Number of bathrooms
+- Floor / total floors
+- Year built
+- Price, currency
+- Photos (multiple, ordered, main photo separate)
 
-### Favorites
-- Client adds properties to favorites
-- View favorites list
+**Amenities / features** — checkboxes:
+- Parking, balcony, elevator, furniture, A/C, heating type, internet, pets allowed
 
-### Viewing Appointments
-- Client books a viewing for a property
-- Select date and time
-- Statuses: `pending` → `confirmed` → `completed` → `cancelled`
-- Agent / Owner confirms or declines the appointment
-- Viewing history for client and agent
+**Variations / units** — if it's an apartment building or office center, one property can have multiple units. Each unit has its own area, floor, price, availability status.
 
-### Deals
-- Create a deal after viewing (purchase or rental)
-- Deal contains: property, client, agent, deal type, amount, date, terms
-- Deal statuses: `draft` → `pending_payment` → `completed` → `cancelled`
-- On deal completion — property status changes to `sold` / `rented`
-- Save price at the time of deal (`price_at_deal`)
+Listing status: `active` → `reserved` → `sold` / `rented` → `archived`
 
-### Rental Management
-- Manage rental agreements: start date, end date, monthly payment
-- Rental status: `active` → `expiring_soon` → `expired` → `terminated`
-- Track rental payments (monthly)
-- Rental expiration notification (notification)
+Property catalog:
+- Filtering by: type, price range (min–max), area range, number of rooms, district, deal type, amenities
+- Sorting by: price, publication date, area
+- Search by title or address
+- Pagination
 
-### Payment
-- Emulated payment (no real gateway)
+---
+
+## Property Detail Page
+
+When a client clicks on a property:
+
+- **Photo gallery** — main photo + thumbnails, full-size viewing
+- **Title, address, district, deal type badge** (sale / rent)
+- **Price** — per month for rent, full amount for sale
+- **Key specs** — area, rooms, bathrooms, floor, year built
+- **Description** — rich text, detailed
+- **Amenities list** — with icons (parking, balcony, elevator, etc.)
+- **Map** — marker showing the property location
+- **Agent / Owner info** — photo, name, rating, contacts
+- **Similar / nearby listings** — recommendations
+- **"Book a Viewing" button**
+- **"Add to Favorites" button**
+- **Agent reviews**
+
+---
+
+## Favorites
+
+- Client adds properties to favorites with a single click (heart icon)
+- View favorites list in the dashboard
+- Remove from favorites
+
+---
+
+## Viewing Appointments
+
+A client books a viewing for a property:
+- Selects date and time (from the agent's/owner's available slots)
+- Optionally adds a comment
+
+Statuses: `pending` → `confirmed` → `completed` → `cancelled` → `no_show`
+
+Agent / Owner confirms or declines the appointment.
+
+Viewing history — visible to both the client and the agent.
+
+Cancellation — with a reason.
+
+---
+
+## Deals
+
+After a viewing, a deal is created (purchase or rental).
+
+Deal data:
+- Property
+- Client
+- Agent (if applicable)
+- Deal type (purchase / rental)
+- Amount
+- Start date (for rentals)
+- End date (for rentals)
+- Terms (text)
+- Contract file (attachment)
+
+Deal statuses: `draft` → `pending_payment` → `completed` → `cancelled`
+
+On deal completion — the property status changes to `sold` or `rented`.
+
+The price is locked at the time of the deal (`price_at_deal`) — if the price changes tomorrow, the deal keeps the old price.
+
+---
+
+## Rental Management
+
+If the deal is a rental, a rental agreement is created:
+- Property, tenant, agent
+- Start date, end date
+- Monthly payment
+- Deposit
+
+Rental status: `active` → `expiring_soon` (30 days before end) → `expired` → `terminated`
+
+Monthly payments are tracked:
+- Payment date, amount, status (paid / overdue / pending)
+- Monthly invoices auto-generated
+
+Rental expiration notification.
+
+---
+
+## Payment
+
+Emulation (no real gateway):
 - For purchase: full amount or deposit
-- For rental: monthly payments
+- For rental: monthly payments + initial deposit
 - Statuses: `pending` → `paid` → `overdue` → `refunded`
 
-### Ratings & Reviews
-- Client leaves a rating (1–5) and review for the agent after a deal
-- Average rating displayed in agent profile
+---
 
-### Profit / Loss
-- Track revenue: platform commission per deal
-- Track revenue from rentals
-- Track expenses: agent payouts, operational costs (simplified)
-- Net profit / loss calculation
-- Filter by period (day / week / month)
-- Status: **in profit** or **at a loss**
-- Access restricted to `SuperAdmin` only
+## Reviews & Ratings
+
+- Client leaves a review for the agent after a completed deal
+- Rating 1–5 + text comment
+- Average rating displayed in the agent's profile and on the property detail page
 
 ---
 
-## Frontend (React / Next)
+## Profit / Loss
 
-- Home page — property catalog with filters, search, and sorting
-- Property detail page — photos, description, map, book viewing button
-- Favorites page
-- Viewing appointment form (select date and time)
-- Client dashboard — favorites, viewing appointments, my deals, rental payments
-- Agent / Owner dashboard — my properties, incoming viewing requests, deal management
-- Deal page
-- Rental management page — agreements, payments, statuses
-- **Profit / Loss** page (SuperAdmin only) — revenue and expense summary
+SuperAdmin only.
+
+- Revenue: platform commission per deal, commission from rentals
+- Expenses: agent payouts, operational costs (simplified)
+- Net profit / loss
+- Filter by period: day, week, month, custom date range
+- Clearly show: is the platform **in profit** or **at a loss**
 
 ---
 
-## Grading Criteria
+## ERD (Database Diagram)
 
-| Criterion                              |
-|----------------------------------------|
-| Authentication + roles                 |
-| Properties (CRUD + filtering)          |
-| Favorites                              |
-| Viewing appointments                   |
-| Deals (purchase / rental)              |
-| Rental management + payments           |
-| Payment (emulation)                    |
-| Ratings & reviews                      |
-| Profit / loss (summary + filtering)    |
-| Frontend (all pages)                   |
+Before development starts — ERD diagram. All tables, relationships, data types. dbdiagram.io, drawSQL, or Mermaid. Include in documentation.
+
+---
+
+## Frontend — Pages I Need
+
+- **Home page** — featured properties, popular districts, search bar
+- **Catalog** — property cards, filters, search, sorting, list/map view toggle
+- **Property detail page** — everything described above
+- **Favorites** — saved listings
+- **Viewing appointment form** — date/time selection
+- **Client dashboard** — favorites, viewings, my deals, rental payments
+- **Agent / Owner dashboard** — my properties, incoming viewing requests, deal management
+- **Deal page** — create / manage deal with contract details
+- **Rental management** — agreements, payment schedule, statuses
+- **Profile** — personal info, reviews, settings
+- **Profit / Loss page** (SuperAdmin only) — revenue, expenses, summary
+
+---
+
+## Acceptance Criteria
+
+| What Must Work                                       |
+|------------------------------------------------------|
+| ERD database diagram                                 |
+| JWT auth + roles (RBAC)                              |
+| Properties (CRUD + filtering + search)               |
+| Property detail page (gallery, map, etc.)            |
+| Favorites                                            |
+| Viewing appointments                                 |
+| Deals (purchase / rental)                            |
+| Rental management + monthly payments                 |
+| Payment emulation                                    |
+| Reviews & ratings                                    |
+| Profit / loss                                        |
+| Frontend — all pages functional                      |
 
 ---
 
 ## Tech Stack
 
 - **Backend:** Go, `Ucode`
-- **Frontend:** React / Next.js (choose one), deployed on **Vercel**
+- **Frontend:** React or Next.js (your choice), deployed on **Vercel**
+- **Database:** ERD required (dbdiagram.io / drawSQL / Mermaid)
 - **Bonus:** Project Documentation
